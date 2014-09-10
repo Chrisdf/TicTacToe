@@ -8,9 +8,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		System.out.println("Welcome to TicTacToe \n");
-		System.out.println("Input two numbers to pick a position on the board");
+		System.out.println("Input two numbers without a comma to input a position on the board");
 		
-		boolean ingame = true;
+		boolean quitGame = false;
 		Scanner input = new Scanner(System.in);
 		int playerTurn = 1;
 		
@@ -30,7 +30,7 @@ public class Main {
 				
 		
 		
-		while(ingame){
+		while(quitGame == false){
 		
 			
 			displayBoard(board, coords);
@@ -38,13 +38,17 @@ public class Main {
 			int coordOne = input.nextInt();
 			int coordTwo = input.nextInt();
 			
+			
 			board = setBoard(board, coordOne, coordTwo, playerTurn);
+			
+			quitGame = checkIfWon(board);
 			
 			if(playerTurn == 1)
 				playerTurn = 2;
-			
-			if(playerTurn == 2)
+			else
 				playerTurn = 1;
+			
+		
 		
 		}
 		
@@ -84,50 +88,35 @@ public class Main {
 	
 	public static String[][] setBoard(String[][] board, int posOne, int posTwo, int playerTurn){
 		
-		int actualArrayValueOne = 0;
-		int actualArrayValueTwo = 0;
+
+			
 		
-		switch(posOne){
-		
-		case 1:
-			actualArrayValueOne = 0;
-			break;
-		case 2:
-			actualArrayValueOne = 1;
-			break;
-		case 3:
-			actualArrayValueOne = 2;
-			break;
-		
-		}
-		
-		switch(posTwo){
-				
-				case 1:
-					actualArrayValueTwo = 0;
-					break;
-				case 2:
-					actualArrayValueTwo = 1;
-					break;
-				case 3:
-					actualArrayValueTwo = 2;
-					break;
-				
-		}
+		if(board[(posOne -1)][(posTwo - 1)] == " "){
 		
 		if(playerTurn == 1)
-		board[actualArrayValueOne][actualArrayValueTwo] = "X";
+		board[(posOne -1)][(posTwo - 1)] = " X ";
 		
 		if(playerTurn == 2)
-		board[actualArrayValueOne][actualArrayValueTwo] = "O";
+		board[(posOne -1)][(posTwo - 1)] = " O ";
 		
+		}
 		
+		else
+			System.out.println("Invalid placement");
 		
 		
 		return board;
 		
 	}
 	
+	public static boolean checkIfWon(String[][] board){
+		
+		
+		
+		
+		
+		return false;
+	}
 	
 	
 }
